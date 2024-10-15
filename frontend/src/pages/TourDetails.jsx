@@ -44,14 +44,13 @@ const TourDetails = () => {
       reviewText: reviewMsg,
       username: username,
     };
-    console.log("Review Data:", reviewData); 
-    console.log("Token:", document.cookie);
 
     try {
-      const response = await axios.post(`${BASE_URL}/review/${id}`, reviewData);
+      const response = await axios.post(`${BASE_URL}/review/${id}`, reviewData, {
+        withCredentials: true,
+      });
 
       setReviews([...reviews, response.data]);
-
       setTourRating(null);
       reviewMsgRef.current.value = "";
 
@@ -209,7 +208,7 @@ const TourDetails = () => {
             </div>
           </Col>
           <Col lg="4">
-            <Booking tour={tour} avgRating={avgRating} reviews={reviews} /> {/* Booking component added here */}
+            <Booking tour={tour} avgRating={avgRating} reviews={reviews} /> 
           </Col>
         </Row>
       </Container>

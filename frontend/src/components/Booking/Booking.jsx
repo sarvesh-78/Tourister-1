@@ -1,79 +1,74 @@
 import React, { useState, useContext } from "react";
 import "./booking.css";
 import { Form, FormGroup, ListGroup, Button, ListGroupItem, Alert } from "reactstrap";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { BASE_URL } from "../../utils/config";
 
 const Booking = ({ tour, avgRating, totalRating, reviews }) => {
   const { price, title } = tour;
-  const navigate = useNavigate();
-
+  
   const { user } = useContext(AuthContext);
+  console.log("User Context:", user); 
 
-  const [booking, setBooking] = useState({
-    userId: user && user.username,
-    userEmail: user && user.email,
+  const initialBookingState = {
+    userId: user ? user.username : "",
+    userEmail: user ? user.email : "",
     tourName: title,
     fullName: "",
     phone: "",
     bookAt: "",
     groupSize: "",
-  });
+  };
+
+  const [booking, setBooking] = useState(initialBookingState);
 
   const [isBookingSuccessful, setIsBookingSuccessful] = useState(false);
   const [isBookingFailed, setIsBookingFailed] = useState(false);
   const [isLoginAlertVisible, setIsLoginAlertVisible] = useState(false);
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     setBooking((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
-    try {
-      if (!user) {
+    if (!user) {
         setIsLoginAlertVisible(true);
         return;
-      }
-  
-      const response = await fetch(`${BASE_URL}/booking`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(booking),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Booking error:", errorData); // Log the error response for debugging
-        setIsBookingSuccessful(false);
-        setIsBookingFailed(true);
-        return; // Early return if the response is not ok
-      }
-  
-      setIsBookingSuccessful(true);
-      setIsBookingFailed(false);
-      setBooking({
-        ...booking,
-        fullName: "",
-        phone: "",
-        bookAt: "",
-        groupSize: "",
-      });
-      setTimeout(() => {
-        navigate("/thank-you");
-      }, 1000);
+    }
+
+    console.log("Booking Request Data:", booking); 
+
+    try {
+        const response = await fetch(`${BASE_URL}/booking`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include", 
+            body: JSON.stringify(booking),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Error Response:", errorData); 
+            setIsBookingFailed(true);
+            alert(`Error: ${errorData.message}`);
+            return;
+        }
+
+        // Remove the unused data variable
+        await response.json(); // you can use this if needed but it’s not being assigned to a variable
+        setIsBookingSuccessful(true);
+        setBooking(initialBookingState); 
+
     } catch (error) {
-      console.error("Fetch error:", error); // Log the fetch error
-      setIsBookingSuccessful(false);
-      setIsBookingFailed(true);
+        console.error("Fetch error:", error);
+        setIsBookingFailed(true);
+        alert("An error occurred while processing your request. Please try again.");
     }
   };
 
-  // Get the current date in YYYY-MM-DD format
   const currentDate = new Date().toISOString().split("T")[0];
 
   const taxes = (0.05 * price * (booking.groupSize || 1)).toFixed(2);
@@ -145,7 +140,7 @@ const Booking = ({ tour, avgRating, totalRating, reviews }) => {
               required
               onChange={handleChange}
               value={booking.bookAt}
-              min={currentDate} // Set min attribute to current date
+              min={currentDate} 
             />
             <input
               type="number"
@@ -156,6 +151,9 @@ const Booking = ({ tour, avgRating, totalRating, reviews }) => {
               value={booking.groupSize}
             />
           </FormGroup>
+          <Button type="submit" className="btn primary__btn w-100 mt-4">
+            Book Now
+          </Button>
         </Form>
       </div>
 
@@ -178,9 +176,6 @@ const Booking = ({ tour, avgRating, totalRating, reviews }) => {
             <span>${total}</span>
           </ListGroupItem>
         </ListGroup>
-        <Button className="btn primary__btn w-100 mt-4" onClick={handleClick}>
-          Book Now
-        </Button>
       </div>
     </div>
   );

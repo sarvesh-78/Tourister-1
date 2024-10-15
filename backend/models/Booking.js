@@ -16,7 +16,7 @@ const bookingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    guestSize: {
+    groupSize: {
       type: Number,
       required: true,
     },
