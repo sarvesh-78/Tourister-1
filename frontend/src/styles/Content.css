@@ -1,36 +1,147 @@
+.swiper-container {
+    width: 100%;
+    height: 533px;
+    max-width: 940px;
+    margin: 0 auto; 
+    padding-bottom: 0;
+    border-width: 5px; /* Adjust the border width */
+    border-style: solid;
+    border-image: linear-gradient(180deg, white 50%, rgb(0, 0, 0) 50%) 1;
+}
+
+.vidcontent{
+  margin-top: 250px;
+  margin-bottom: 100px;
+}
+
+.vidcontent h1{
+  margin-top: 50px;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  font-weight: 1000;
+  font-family: 'Cinzel';
+}
+
+.vidcontent h2{
+  font-size:larger;
+  font-weight: 520;
+}
+
+
+.back-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 800px;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.swiper-wrapper {
+    display: flex;
+}
+
+
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    position: relative; 
+}
+
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0; 
+  padding-bottom: 56.25%; 
+}
+
+.youtube-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: white; 
+}
+
 .content-container {
-    padding: 20px;
-    background-color: #f8f9fa; /* Light background for the content area */
+  padding: 2rem;
+  text-align: center;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333; /* Dark text for the heading */
+.heading {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #333;
 }
 
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Responsive grid */
-    gap: 20px; /* Space between video cards */
+.main-video {
+  margin-bottom: 2rem;
+}
+
+.carousel-video {
+  width: 100%;
+  height: 400px; 
+  border: none;
+}
+
+.video-cards-container {
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(3, 1fr); /* Ensure 3 equal columns */
+  gap: 1rem; /* Control spacing between both rows and columns */
+  justify-items: center;
+}
+
+.video-cards-container2 {
+  display: grid; /* Use grid layout */
+  grid-template-columns: repeat(2, 1fr); /* Ensure 3 equal columns */
+  gap: 1rem; /* Control spacing between both rows and columns */
 }
 
 .video-card {
-    background-color: #fff; /* White background for each card */
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 400px; /* Full width inside the grid column */
+}
+.video-card2 {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 500px; /* Full width inside the grid column */
 }
 
-.video-frame {
-    width: 100%;
-    height: 180px; /* Fixed height for the videos */
-    border: none; /* Remove default border */
+h2{
+  font-family: 'Rajdhani', sans-serif;
 }
 
-.video-card h3 {
-    padding: 10px 0; /* Space above and below the title */
-    font-size: 1.1rem; /* Title font size */
-    color: #555; /* Title color */
+.video-card-embed {
+  width: 100%;
+  height: 280px; 
+  border: none;
+}
+
+.video-title {
+  margin: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+
+.ytp-large-play-button {
+  width:0 !important; /* Hides the play button */
 }
