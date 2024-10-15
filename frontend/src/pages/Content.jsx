@@ -4,13 +4,13 @@ import { Navigation } from 'swiper/modules';
 import {Container} from 'reactstrap';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import '../styles/Content.css'; // Ensure to import your CSS
+import '../styles/Content.css'; 
 
 const videos = [
   {
     id: 1,
     videoUrl: "https://www.youtube.com/embed/XhCkptbe7Z4",
-    title: "Exploring the Maldives" // Add titles for each video
+    title: "Exploring the Maldives" 
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const videos1 = [
   {
     id: 1,
     videoUrl: "https://www.youtube.com/embed/zD43hknPtLc",
-    title: "India - Welcome to Kerala" // Add titles for each video
+    title: "India - Welcome to Kerala"
   },
   {
     id: 2,
@@ -58,7 +58,7 @@ const videos2 = [
   {
     id: 1,
     videoUrl: "https://player.vimeo.com/video/162413069?badge=0&autopause=0&player_id=0&app_id=58479",
-    title: "Discover the Wonders of Bangkok" // Add titles for each video
+    title: "Discover the Wonders of Bangkok" 
   },
   {
     id: 2,
@@ -83,17 +83,17 @@ const Content = () => {
   const handleSlideChange = (swiper) => {
     const videos = document.querySelectorAll('video');
     videos.forEach(video => {
-      video.pause(); // Pause all videos first
+      video.pause(); 
     });
 
     const activeSlideVideo = swiper.slides[swiper.activeIndex].querySelector('video');
     if (activeSlideVideo) {
-      activeSlideVideo.play(); // Play the active slide's video
+      activeSlideVideo.play(); 
     }
   };
 
   return (
-    <div className="content-wrapper"> {/* Added a wrapping div */}
+    <div className="content-wrapper"> 
       <div className='vidcontent'>
         <video autoPlay muted loop className="back-video">
           <source src={require('../assets/images/skyvideo.mp4')} type="video/mp4" />
@@ -128,7 +128,7 @@ const Content = () => {
                 <video
                   src={video.videoUrl}
                   muted
-                  preload="none" // Ensures no preview is loaded
+                  preload="none" 
                   style={{ width: '100%', height: '100%' }}
                 />
               )}
