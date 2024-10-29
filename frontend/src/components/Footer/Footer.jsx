@@ -111,7 +111,7 @@ const Footer = () => {
                     to="mailto:support@travelworld.com"
                     className="color-text"
                   >
-                    support@travelworld.com
+                    support123@tourister.com
                   </Link>
                 </p>
               </ListGroupItem>
@@ -135,14 +135,14 @@ const Footer = () => {
                   </span>
                   <h6 className="mb-0">Address:</h6>
                 </div>
-                <p className="mb-0">Pune, Maharashtra, India</p>
+                <p className="mb-0">Chennai, Tamil Nadu, India</p>
               </ListGroupItem>
             </ListGroup>
           </Col>
 
           <Col lg="12" className="text-center pt-5">
             <p className="copyright">
-              &copy; {year} Travel World. All Rights Reserved.
+              &copy; {year} Tourister. All Rights Reserved.
              
             </p>
           </Col>
